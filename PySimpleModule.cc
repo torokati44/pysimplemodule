@@ -88,7 +88,10 @@ void PySimpleModule::handleMessage(cMessage *msg)
 PYBIND11_EMBEDDED_MODULE(pyomnetpp, m) {
 
     // global (static-ish) methods
-    m.def("info", &ModuleBase::info);
+    m
+        .def("info", &ModuleBase::info)
+        .def("simTime", &omnetpp::simTime)
+        ;
 
 
     // Opaque type, just so a pointer to this can be passed through to the python object and back
@@ -114,8 +117,9 @@ PYBIND11_EMBEDDED_MODULE(pyomnetpp, m) {
         .def("dup", &cMessage::dup, py::return_value_policy::reference)
             ;
 
-
 }
+
+
 
 #if 0
 
